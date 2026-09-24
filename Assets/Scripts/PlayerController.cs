@@ -1,8 +1,11 @@
 using UnityEngine;
+using TMPro;
 
 public class PlayerController : MonoBehaviour
 {
     public float speed = 8.0f;
+    public int gold = 0;
+    public TMP_Text winText;
     private Rigidbody2D rb2d;
     private Vector3 startingScale;
 
@@ -39,5 +42,24 @@ public class PlayerController : MonoBehaviour
 
     void OnCollisionEnter2D(Collision2D _collision){
         transform.localScale = startingScale * 1.2f;
+    }
+
+    public void AddGold(int _amount)
+    {
+        gold += _amount;
+
+        GameObject goldTextGO = GameObject.Find("Gold Text");
+
+        if (goldTextGO)
+        {
+            goldTextGO.GetComponent<TMP_Text>().text = gold.ToString();
+
+            if (gold >= 5.0f)
+                if (winText)
+                {
+                    winText.enabled = true;
+                    Time.timeScale = 0.0f; 
+                }
+        }
     }
 }
