@@ -54,7 +54,7 @@ public class PlayerController : MonoBehaviour
         {
             goldTextGO.GetComponent<TMP_Text>().text = gold.ToString();
 
-            if (gold >= 5.0f)
+            if (gold >= 51.0f)
                 if (winText)
                 {
                     winText.enabled = true;
